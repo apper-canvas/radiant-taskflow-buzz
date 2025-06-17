@@ -1,0 +1,82 @@
+[
+  {
+    "Id": 1,
+    "title": "Review quarterly marketing report",
+    "completed": false,
+    "category": "Work",
+    "priority": "high",
+    "dueDate": "2024-01-15",
+    "createdAt": "2024-01-10T09:00:00.000Z",
+    "completedAt": null
+  },
+  {
+    "Id": 2,
+    "title": "Schedule team meeting for project kickoff",
+    "completed": true,
+    "category": "Work",
+    "priority": "medium",
+    "dueDate": "2024-01-12",
+    "createdAt": "2024-01-08T14:30:00.000Z",
+    "completedAt": "2024-01-12T11:15:00.000Z"
+  },
+  {
+    "Id": 3,
+    "title": "Buy groceries for the week",
+    "completed": false,
+    "category": "Personal",
+    "priority": "medium",
+    "dueDate": null,
+    "createdAt": "2024-01-11T18:00:00.000Z",
+    "completedAt": null
+  },
+  {
+    "Id": 4,
+    "title": "Complete React component refactoring",
+    "completed": false,
+    "category": "Development",
+    "priority": "high",
+    "dueDate": "2024-01-16",
+    "createdAt": "2024-01-09T10:45:00.000Z",
+    "completedAt": null
+  },
+  {
+    "Id": 5,
+    "title": "Call mom to schedule weekend visit",
+    "completed": false,
+    "category": "Personal",
+    "priority": "low",
+    "dueDate": "2024-01-14",
+    "createdAt": "2024-01-11T16:20:00.000Z",
+    "completedAt": null
+  },
+  {
+    "Id": 6,
+    "title": "Update project documentation",
+    "completed": true,
+    "category": "Development",
+    "priority": "medium",
+    "dueDate": "2024-01-13",
+    "createdAt": "2024-01-07T13:15:00.000Z",
+    "completedAt": "2024-01-13T15:30:00.000Z"
+  },
+  {
+    "Id": 7,
+    "title": "Prepare presentation for client meeting",
+    "completed": false,
+    "category": "Work",
+    "priority": "high",
+    "dueDate": "2024-01-17",
+    "createdAt": "2024-01-10T11:30:00.000Z",
+    "completedAt": null
+  },
+  {
+    "Id": 8,
+    "title": "Organize desk and workspace",
+    "completed": false,
+    "category": "Personal",
+    "priority": "low",
+    "dueDate": null,
+    "createdAt": "2024-01-11T12:00:00.000Z",
+    "completedAt": null
+  }
+]
