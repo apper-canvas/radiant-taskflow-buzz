@@ -44,14 +44,14 @@ const TasksPage = () => {
     }
   };
 
-  const handleTaskUpdate = (updatedTask) => {
+const handleTaskUpdate = (updatedTask) => {
     setTasks(prev => prev.map(task => 
       task.Id === updatedTask.Id ? updatedTask : task
     ));
   };
 
   const handleTaskDelete = (taskId) => {
-    setTasks(prev => prev.filter(task => task.Id !== taskId));
+setTasks(prev => prev.filter(task => task.Id !== taskId));
   };
 
   const handleTaskCreate = (newTask) => {
@@ -83,7 +83,7 @@ const TasksPage = () => {
   const getTaskCounts = () => {
     const counts = {};
     categories.forEach(category => {
-      counts[category.name] = tasks.filter(task => task.category === category.name).length;
+counts[category.Name || category.name] = tasks.filter(task => task.category === (category.Name || category.name)).length;
     });
     return counts;
   };
@@ -134,7 +134,7 @@ const TasksPage = () => {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
             <div>
               <h1 className="text-2xl font-bold text-surface-900">
-                {activeCategory ? `${activeCategory} Tasks` : 'All Tasks'}
+{activeCategory ? `${activeCategory} Tasks` : 'All Tasks'}
               </h1>
               <p className="text-surface-600 mt-1">
                 Manage your tasks and stay productive

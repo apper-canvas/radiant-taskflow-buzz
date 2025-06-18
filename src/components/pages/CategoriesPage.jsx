@@ -58,7 +58,7 @@ const CategoriesPage = () => {
   };
 
   const getCategoryTaskCount = (categoryName) => {
-    return tasks.filter(task => task.category === categoryName).length;
+return tasks.filter(task => task.category === categoryName).length;
   };
 
   const handleSubmit = async (e) => {
@@ -73,14 +73,14 @@ const CategoriesPage = () => {
       let result;
       
       if (editingCategory) {
-        result = await categoryService.update(editingCategory.Id, formData);
+result = await categoryService.update(editingCategory.Id, formData);
         setCategories(prev => prev.map(cat => 
           cat.Id === result.Id ? result : cat
         ));
         toast.success('Category updated successfully!');
       } else {
         result = await categoryService.create(formData);
-        setCategories(prev => [result, ...prev]);
+setCategories(prev => [result, ...prev]);
         toast.success('Category created successfully!');
       }
 
@@ -92,10 +92,10 @@ const CategoriesPage = () => {
     }
   };
 
-  const handleEdit = (category) => {
+const handleEdit = (category) => {
     setEditingCategory(category);
     setFormData({
-      name: category.name,
+      name: category.Name || category.name,
       color: category.color,
       icon: category.icon
     });
@@ -103,8 +103,8 @@ const CategoriesPage = () => {
   };
 
   const handleDelete = async (categoryId) => {
-    const category = categories.find(cat => cat.Id === categoryId);
-    const taskCount = getCategoryTaskCount(category.name);
+const category = categories.find(cat => cat.Id === categoryId);
+    const taskCount = getCategoryTaskCount(category.Name || category.name);
     
     if (taskCount > 0) {
       toast.error(`Cannot delete category with ${taskCount} tasks. Move or delete tasks first.`);
@@ -116,7 +116,7 @@ const CategoriesPage = () => {
     }
 
     try {
-      await categoryService.delete(categoryId);
+await categoryService.delete(categoryId);
       setCategories(prev => prev.filter(cat => cat.Id !== categoryId));
       toast.success('Category deleted successfully!');
     } catch (error) {
@@ -186,11 +186,11 @@ const CategoriesPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <AnimatePresence>
               {categories.map((category, index) => {
-                const taskCount = getCategoryTaskCount(category.name);
+const taskCount = getCategoryTaskCount(category.Name || category.name);
                 
                 return (
                   <motion.div
-                    key={category.Id}
+key={category.Id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
@@ -211,8 +211,8 @@ const CategoriesPage = () => {
                           />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-surface-900">
-                            {category.name}
+<h3 className="font-semibold text-surface-900">
+                            {category.Name || category.name}
                           </h3>
                           <Badge variant="default" size="sm">
                             {taskCount} tasks
@@ -232,7 +232,7 @@ const CategoriesPage = () => {
                         <Button
                           variant="ghost"
                           size="sm"
-                          onClick={() => handleDelete(category.Id)}
+onClick={() => handleDelete(category.Id)}
                           className="p-2 text-error hover:bg-error/10"
                           disabled={taskCount > 0}
                         >

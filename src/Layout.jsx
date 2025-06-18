@@ -1,19 +1,23 @@
 import { Outlet, NavLink, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSelector } from 'react-redux';
 import ApperIcon from '@/components/ApperIcon';
 import { routeArray } from '@/config/routes';
 import ProgressRing from '@/components/molecules/ProgressRing';
 import SearchBar from '@/components/molecules/SearchBar';
 import { taskService } from '@/services';
+import { AuthContext } from '@/App';
 
 const Layout = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [todayProgress, setTodayProgress] = useState(0);
+  const { logout } = useContext(AuthContext);
+  const { user } = useSelector((state) => state.user);
 
-  useEffect(() => {
+useEffect(() => {
     const loadTasks = async () => {
       try {
         const allTasks = await taskService.getAll();
@@ -22,8 +26,8 @@ const Layout = () => {
         // Calculate today's progress
         const today = new Date().toDateString();
         const todayTasks = allTasks.filter(task => {
-          if (!task.dueDate) return false;
-          return new Date(task.dueDate).toDateString() === today;
+          if (!task.due_date) return false;
+          return new Date(task.due_date).toDateString() === today;
         });
         
         if (todayTasks.length > 0) {
@@ -71,7 +75,7 @@ const Layout = () => {
               </div>
               <h1 className="text-xl font-heading font-bold text-surface-900">TaskFlow</h1>
             </div>
-          </div>
+</div>
 
           <div className="flex items-center space-x-4">
             {/* Search Bar */}
@@ -81,6 +85,21 @@ const Layout = () => {
             
             {/* Progress Ring */}
             <ProgressRing progress={todayProgress} size={40} />
+            
+            {/* User Menu */}
+            <div className="flex items-center space-x-3">
+              <div className="hidden sm:flex items-center space-x-2 text-sm text-surface-600">
+                <span>Welcome,</span>
+                <span className="font-medium text-surface-900">{user?.firstName || 'User'}</span>
+              </div>
+              <button
+                onClick={logout}
+                className="flex items-center space-x-2 px-3 py-2 text-sm text-surface-600 hover:text-surface-900 hover:bg-surface-100 rounded-lg smooth-transition"
+              >
+                <ApperIcon name="LogOut" size={16} />
+                <span className="hidden sm:inline">Logout</span>
+              </button>
+            </div>
           </div>
         </div>
       </header>
